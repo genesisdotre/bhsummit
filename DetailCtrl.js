@@ -31,7 +31,7 @@ app.controller("DetailCtrl", function($routeParams, $scope) {
 
   // creation of the sphere material
   var sphereMaterial = new THREE.MeshBasicMaterial();
-  sphereMaterial.map = THREE.ImageUtils.loadTexture( "big/" + $routeParams.img);
+  sphereMaterial.map = THREE.ImageUtils.loadTexture( "big/" + $routeParams.img + ".JPG");
 
   // geometry + material = mesh (actual object)
   var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
