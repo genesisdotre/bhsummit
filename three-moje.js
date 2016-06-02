@@ -38,8 +38,7 @@ scene.add(sphereMesh);
 // listeners
 document.addEventListener("mousedown", onDocumentMouseDown, false);
 document.addEventListener("mousemove", onDocumentMouseMove, false);
-document.addEventListener("mouseup", onDocumentMouseUp, false);      
-
+document.addEventListener("mouseup", onDocumentMouseUp, false);
 
 document.addEventListener("touchstart", onDocumentMouseDown, false);
 document.addEventListener("touchmove", onDocumentMouseMove, false);
@@ -47,7 +46,7 @@ document.addEventListener("touchend", onDocumentMouseUp, false);
   
 render();
          
-function render(){
+function render() {
   
   requestAnimationFrame(render);
   
@@ -56,7 +55,7 @@ function render(){
   }
 
   // limiting latitude from -85 to 85 (cannot point to the sky or under your feet)
-              latitude = Math.max(-85, Math.min(85, latitude));
+  latitude = Math.max(-85, Math.min(85, latitude));
 
   // moving the camera according to current latitude (vertical movement) and longitude (horizontal movement)
   camera.target.x = 500 * Math.sin(THREE.Math.degToRad(90 - latitude)) * Math.cos(THREE.Math.degToRad(longitude));
@@ -70,28 +69,21 @@ function render(){
 
 // when the mouse is pressed, we switch to manual control and save current coordinates
 function onDocumentMouseDown(event){
-
   event.preventDefault();
-
-
   init = false;
   pressed = true;
-
 
   savedX = event.targetTouches ? event.targetTouches[0].clientX : event.clientX;
   savedY = event.targetTouches ? event.targetTouches[0].clientY : event.clientY;
 
   savedLongitude = longitude;
   savedLatitude = latitude;
-
 }
 
 // when the mouse moves, if in manual contro we adjust coordinates
 function onDocumentMouseMove(event){
-
   var clientX = event.targetTouches ? event.targetTouches[0].clientX : event.clientX;
   var clientY = event.targetTouches ? event.targetTouches[0].clientY : event.clientY;
-
 
   if(pressed){
     longitude = (savedX - clientX) * 0.1 + savedLongitude;
@@ -100,5 +92,5 @@ function onDocumentMouseMove(event){
 }
 
 function onDocumentMouseUp(event){
-   pressed = false;
+  pressed = false;
 }

@@ -26,11 +26,14 @@
       }
     </style>
   </head>
-  <body  ng-app="app" ng-controller="ctrl">
-    <a class="thumbnail" ng-repeat="file in files"><img ng-src="small/{{file}}"></a>
+  <body  ng-app="app">
+    
+    <div ng-view></div>
+
   </body>
 
   <script src="angular.js"></script>
+  <script src="angular-route.js"></script>
   <script src="three.min.js"></script>
   <script src="three-moje.js"></script>
 
@@ -40,19 +43,19 @@
     app.config(function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: 'templates/start.html',
-          controller: 'StartCtrl',
-        })  
-        .when('/countdown', {
-          templateUrl: 'templates/countdown.html',
-          controller: 'CountdownCtrl',
-        })           
+          templateUrl: 'list.html',
+          controller: 'ListCtrl',
+        })
+        .when('/:img', {
+          templateUrl: 'detail.html',
+          controller: 'DetailCtrl',
+        })
         .otherwise({
           redirectTo: '/'
         });
     });
 
-    app.controller("ctrl", function($scope) {
+    app.controller("ListCtrl", function($scope) {
 
       $scope.files = [
         "R0010628.JPG",
@@ -77,6 +80,11 @@
 
     });
 
+    app.controller("DetailCtrl", function($routeParams, $scope) {
+
+      $scope.img = $routeParams.img;
+
+    });
 
   </script>
   <!-- 
