@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <style>
+      body{
+        margin: 0;
+      }
+      canvas{
+        width: 100%;
+        height: 100%
+      }
+
+      .thumbnail {
+        width: 33.3333333%;
+        display: block;
+        float: left;
+      }
+
+      @media (max-width: 600px) {
+        .thumbnail {
+          width: 50%;
+        }
+      }
+
+      .thumbnail img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body  ng-app="app" ng-controller="ctrl">
+    <a class="thumbnail" ng-repeat="file in files"><img ng-src="small/{{file}}"></a>
+  </body>
+
+  <script src="angular.js"></script>
+  <script src="three.min.js"></script>
+  <script src="three-moje.js"></script>
+
+  <script type="text/javascript">
+    var app = angular.module("app", ["ngRoute"]);
+
+    app.config(function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: 'templates/start.html',
+          controller: 'StartCtrl',
+        })  
+        .when('/countdown', {
+          templateUrl: 'templates/countdown.html',
+          controller: 'CountdownCtrl',
+        })           
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    app.controller("ctrl", function($scope) {
+
+      $scope.files = [
+        "R0010628.JPG",
+        "R0010630.JPG",
+        "R0010633.JPG",
+        "R0010634.JPG",
+        "R0010635.JPG",
+        "R0010638.JPG",
+        "R0010639.JPG",
+        "R0010640.JPG",
+        "R0010642.JPG",
+        "R0010643.JPG",
+        "R0010644.JPG",
+        "R0010648.JPG",
+        "R0010649.JPG",
+        "R0010651.JPG",
+        "R0010652.JPG",
+        "R0010656.JPG",
+        "R0010657.JPG",
+        "R0010660.JPG"
+      ];
+
+    });
+
+
+  </script>
+  <!-- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> 
+  -->
+
+</html>
